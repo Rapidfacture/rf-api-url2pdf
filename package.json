@@ -1,6 +1,6 @@
 {
   "name": "rf-api-url2pdf",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "API url to pdf service.",
   "author": {
     "name": "Felix Furtmayr"

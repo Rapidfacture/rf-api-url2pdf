@@ -4,7 +4,11 @@
  * API service: url2pdf
  */
 
-var url2pdf = require("url2pdf-plus");
+var url2pdf = require("url2pdf-plus"),
+	require("fs"),
+	rvar config = require("rf-config"),
+	log = require("rf-log"),
+	API = require("rf-load").require("rf-api").API;
 
 module.exports.start = function(options, next) {
 
@@ -40,7 +44,7 @@ module.exports.start = function(options, next) {
 	    });
 	};
 
-	API.registerAnswerFunction(getPdf);
+	API.ServiceFactory.registerFunction(getPdf);
 
 	//console.log(API);
 

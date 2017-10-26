@@ -6,7 +6,7 @@
 
 var url2pdf = require("url2pdf-plus"),
 	require("fs"),
-	rvar config = require("rf-config"),
+	config = require("rf-config"),
 	log = require("rf-log"),
 	API = require("rf-load").require("rf-api").API;
 

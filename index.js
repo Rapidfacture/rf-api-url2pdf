@@ -6,18 +6,26 @@
 
 var url2pdf = require("url2pdf-plus"),
 	fs = require("fs"),
-	config = require("rf-config"),
-	log = require("rf-log"),
 	API = require("rf-load").require("rf-api").API;
 
 module.exports.start = function(options, next) {
-
+    /** 
+    * getPdf: get Pdf from Url
+    *
+    * @param url: URL string
+    * @param res: Express ressource
+    * @param callback: (optional) callback function
+    * @param getFilePath: (boolean) only get the pdf file path
+    * @example
+    * var API = require("rf-load").require("rf-api").API; // load API
+    * API.ServiceFactory.getPdf(url, res, callback, getFilePath); // execute getPdf function
+    */
 	function getPdf(url, res, callback, getFilePath) { // Export
 	  //Add internal token for unblocking angular js request
 	  url = url + '?internal=ksdf6s80fsa9s0madf7s9df';
 	  url2pdf.renderPdf(url, {
 	      loadTimeout: 2000,
-	      saveDir: config.paths.webserver + "/pdfTemp",
+	      saveDir: options.saveDir,
 	      //debug: true
 	    })
 	    .then(function(filePath) {

@@ -1,6 +1,6 @@
 {
    "name": "rf-api-url2pdf",
-   "version": "0.0.6",
+   "version": "0.0.8",
    "description": "Url to pdf service for Rapidfacture request API",
    "author": {
       "name": "Felix Furtmayr"
@@ -23,6 +23,6 @@
    },
    "scripts": {
       "prepublish": "npm test",
-      "test": "grunt"
+      "test": "sh test/isRepoClean.sh && grunt"
    }
 }

@@ -23,6 +23,6 @@
    },
    "scripts": {
       "prepublish": "npm test",
-      "test": "sh test/isRepoClean.sh && grunt"
+      "test": "sh test/isRepoClean && grunt"
    }
 }

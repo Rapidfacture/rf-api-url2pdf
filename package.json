@@ -1,19 +1,28 @@
 {
-  "name": "rf-api-url2pdf",
-  "version": "0.0.4",
-  "description": "API url to pdf service.",
-  "author": {
-    "name": "Felix Furtmayr"
-  },
-  "license": "MIT",
-  "maintainers": [
-    {
+   "name": "rf-api-url2pdf",
+   "version": "0.0.5",
+   "description": "Url to pdf service for Rapidfacture request API",
+   "author": {
+      "name": "Felix Furtmayr"
+   },
+   "license": "MIT",
+   "maintainers": [{
       "name": "felix_furtmayr",
       "email": "ff@rapidfacture.com"
-    }
-  ],
-  "main": "index.js",
-  "dependencies": {
-    "url2pdf-plus": "^0.5.5"
-  }
+   }],
+   "main": "index.js",
+   "dependencies": {
+      "url2pdf-plus": "^0.5.5"
+   },
+   "peerDependencies": {
+      "rf-api": "^0.0.5"
+   },
+   "devDependencies": {
+      "grunt": "1.0.1",
+      "grunt-eslint": "20.1.0"
+   },
+   "scripts": {
+      "prepublish": "npm test",
+      "test": "grunt"
+   }
 }

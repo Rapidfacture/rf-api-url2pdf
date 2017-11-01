@@ -34,7 +34,9 @@ load.module("rf-api-url2pdf", {
 ### Use the service
 ```js
 
-app.get('/pdf', function(req, res, services){
+var API = require("rf-load").require("rf-api").API;
+
+API.get('/pdf', function(req, res, services){
 
    var url = 'https://www.ebay.de';
 

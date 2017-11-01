@@ -34,22 +34,19 @@ load.module("rf-api-url2pdf", {
 ### Use the service
 ```js
 
-// load Services from API
-var Services = require("rf-load").require("rf-api").API.ServiceFactory;
-
-app.get('/pdf', function(req, res){
+app.get('/pdf', function(req, res, services){
 
    var url = 'https://www.ebay.de';
 
-   // @params: respond the pdf to the client
-   Services.getPdf(url, res);
+   // Example1: respond the pdf to the client
+   services.getPdf(url, res);
 
-   // @example: optional callback
-   Services.getPdf(url, res, function(pdf){
+   // Example2: optional callback
+   services.getPdf(url, res, function(pdf){
       // do sth with the pdf
    });
 
-   // @example: get only file path
+   // Example3: get only file path
    var pdfFilePath = Services.getPdf(url, res, null, "getFilePath")
 })
 

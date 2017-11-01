@@ -11,14 +11,23 @@ module.exports.start = function (options, next) {
     * getPdf: get Pdf from Url
     *
     * @param url: URL string
-    * @param res: Express response
     * @param callback: (optional) callback function
     * @param getFilePath: (boolean) only get the pdf file path
     * @example
-    * var API = require("rf-load").require("rf-api").API; // load API
-    * API.ServiceFactory.getPdf(url, res, callback, getFilePath); // execute getPdf function
+    * @example
+    * // execute a registred service function
+    * var API = require("rf-load").require("API");
+    *
+    *  API.post("get-pdf", function(req, res, services) {
+    *    services.createPdf(req.data, function (pdf){
+    *          var corrected = processPdf(pdf)
+    *          res.send(corrected)
+    *    })
+    *  })
+    *
     */
-   function getPdf (url, res, callback, getFilePath) { // Export
+   function getPdf (url, callback, getFilePath) { // Export
+      var res = this.res // get express response from parent function
       // Add internal token for unblocking angular js request
       url = url + '?internal=ksdf6s80fsa9s0madf7s9df'
       url2pdf.renderPdf(url, {
@@ -50,7 +59,7 @@ module.exports.start = function (options, next) {
          })
    };
 
-   API.ServiceFactory.registerFunction(getPdf)
+   API.Services.registerFunction(getPdf)
 
    // console.log(API);
 

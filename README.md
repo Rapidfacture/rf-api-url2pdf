@@ -41,15 +41,17 @@ API.get('/pdf', function(req, res, services){
    var url = 'https://www.ebay.de';
 
    // Example1: respond the pdf to the client
-   services.getPdf(url, res);
+   services.getPdf(url, res.send);
 
    // Example2: optional callback
-   services.getPdf(url, res, function(pdf){
+   services.getPdf(url, function(err, pdf) {
       // do sth with the pdf
    });
 
    // Example3: get only file path
-   var pdfFilePath = Services.getPdf(url, res, null, "getFilePath")
+   Services.getPdf(url, function(err, pdfFilePath) {
+      //
+   }, true)
 })
 
 

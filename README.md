@@ -21,7 +21,7 @@ load.file('db')
 load.file('http')
 
 // start request api
-load.file('rf-api')
+load.module('rf-api')
 
 // plug in url2pdf into the api
 load.module("rf-api-url2pdf", {

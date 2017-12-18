@@ -6,6 +6,10 @@
       "name": "Felix Furtmayr"
    },
    "license": "MIT",
+   "repository": {
+     "type": "git",
+     "url": "git@github.com:RAPIDFACTURE/rf-api-url2pdf.git"
+     },
    "maintainers": [{
       "name": "felix_furtmayr",
       "email": "ff@rapidfacture.com"

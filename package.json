@@ -16,10 +16,10 @@
    }],
    "main": "index.js",
    "dependencies": {
-      "url2pdf-plus": "^0.5.5"
+      "url2pdf-plus": "0.5.5"
    },
    "peerDependencies": {
-      "rf-api": "^0.0.5"
+      "rf-api": "0.0.5"
    },
    "devDependencies": {
       "grunt": "1.0.1",

@@ -1,9 +1,0 @@
-pushBeforePublish
- => easy to implement, important
-   https://www.npmjs.com/package/grunt-checkpending
-
-pushRegular
- => all 6 hours, but max once per day: tell developer to push;grunt-periodic
-
-commitRegular
- => min once an hour difficult to check

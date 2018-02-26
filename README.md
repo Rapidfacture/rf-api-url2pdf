@@ -1,7 +1,6 @@
 # rf-api-url2pdf
 
-* create a pdf from a website via given url
-* plugin for `rf-api`
+Create a pdf from a website via given url.
 
 
 ## Getting Started
@@ -12,54 +11,36 @@
 
 
 ```js
-var Loader = require('rf-load').moduleLoader
-var load = new Loader()
-load.setModulePath(config.paths.modules)
 
-// other stuff
-load.file('db')
-load.file('http')
+var services: {
+   getPdf: require('rf-api-url2pdf').start({
+      saveDir: '/pdfTmp' // path where the pdfs are stored
+   }).getPdf
+}
 
-// start request api
-load.module('rf-api')
-
-// plug in url2pdf into the api
-load.module("rf-api-url2pdf", {
-   saveDir: '/pdfTmp' // path where the pdfs are stored
-});
 
 ```
-
 
 ### Use the service
 ```js
 
-var API = require("rf-load").require("rf-api").API;
-
-API.get('/pdf', function(req, res, services){
-
-   var url = 'https://www.ebay.de';
-
-   // Example1: respond the pdf to the client
-   services.getPdf(url, res.send);
-
-   // Example2: optional callback
-   services.getPdf(url, function(err, pdf) {
-      // do sth with the pdf
-   });
-
-   // Example3: get only file path
-   Services.getPdf(url, function(err, pdfFilePath) {
-      //
-   }, true)
+// simple example
+service.getPdf(url, function(err, pdfPreviewPic){
+   console.log(pdfPreviewPic);
 })
 
 
+// return only the path to the file
+service.getPdf(url, function(err, filePath, 'getFilePath'){
+   console.log(filePath);
+})
+
+
+// with rf-api
+API.post('/pdf', function(req, res){
+   service.getPdf('http://www.test.com', res.send);
+})
 ```
-
-## Peer Dependencies
-* rf-api
-
 
 ## Development
 

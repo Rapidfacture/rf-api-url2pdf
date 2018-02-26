@@ -1,29 +1,31 @@
 {
-   "name": "rf-api-url2pdf",
-   "version": "0.2.0",
-   "description": "Url to pdf service for Rapidfacture request API",
-   "author": {
-      "name": "Felix Furtmayr"
-   },
-   "license": "MIT",
-   "repository": {
-     "type": "git",
-     "url": "git@github.com:RAPIDFACTURE/rf-api-url2pdf.git"
-     },
-   "maintainers": [{
+  "name": "rf-api-url2pdf",
+  "version": "0.2.1",
+  "description": "Url to pdf service for Rapidfacture request API",
+  "author": {
+    "name": "Felix Furtmayr"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:RAPIDFACTURE/rf-api-url2pdf.git"
+  },
+  "maintainers": [
+    {
       "name": "felix_furtmayr",
       "email": "ff@rapidfacture.com"
-   }],
-   "main": "index.js",
-   "dependencies": {
-      "url2pdf-plus": "0.5.5"
-   },
-   "devDependencies": {
-      "grunt": "1.0.1",
-      "grunt-eslint": "20.1.0"
-   },
-   "scripts": {
-      "prepublish": "sh test/isRepoClean && npm test",
-      "test": "grunt"
-   }
+    }
+  ],
+  "main": "index.js",
+  "dependencies": {
+    "url2pdf-plus": "0.5.5"
+  },
+  "devDependencies": {
+    "grunt": "1.0.1",
+    "grunt-eslint": "20.1.0"
+  },
+  "scripts": {
+    "prepublish": "sh test/isRepoClean && npm test",
+    "test": "grunt"
+  }
 }

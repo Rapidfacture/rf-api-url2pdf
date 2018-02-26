@@ -1,6 +1,6 @@
 {
   "name": "rf-api-url2pdf",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Url to pdf service for Rapidfacture request API",
   "author": {
     "name": "Felix Furtmayr"

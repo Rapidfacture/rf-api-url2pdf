@@ -1,40 +1,55 @@
 /**
  * API service: url2pdf
  */
+const url2pdf = require('url2pdf-plus');
+const fs = require('fs');
 
-var url2pdf = require('url2pdf-plus');
-var fs = require('fs');
-var path = require('path');
 
 module.exports.start = function (options, next) {
    return {
-      getPdf: function (url, callback, getFilePath) { // Export
-         callback = callback || function () {};
-         getFilePath = getFilePath || false;
-         // Add internal token for unblocking angular js request
-         url = url + '?internal=ksdf6s80fsa9s0madf7s9df';
-         url2pdf.renderPdf(url, {
-            loadTimeout: 2000,
-            saveDir: options.saveDir || path.joint(__dirname, 'pdfTmp')
-            // debug: true
-         })
-            .then(function (filePath) {
-               // console.log(filePath);
-               if (getFilePath) { // just return filePath
-                  callback(null, filePath);
-               } else { // or return whole file
-                  fs.readFile(filePath, function (err, data) {
-                     if (err) {
-                        callback('Server Error, function API.getPdf, readFile ' + filePath + ', ' + err);
-                     } else {
-                        callback(null, data);
-                     }
-                  });
+
+      getPdf: function (urls, callback, options) {
+
+         // options
+         options = options || {};
+         let opts = {
+            loadTimeout: options.loadTimeout || 2000
+         };
+         if (options.saveDir) opts.saveDir = options.saveDir;
+         if (options.debug) opts.debug = options.debug;
+
+         if (urls instanceof String) { // allow passing a single url as string
+            urls = [urls];
+         }
+
+         // create a promise for each url
+         let promises = [];
+         for (let url of urls) {
+            promises.push(url2pdf.renderPdf(url, opts));
+         }
+
+         // Wait until all PDFs are finished ...
+         Promise.all(promises).then(filepaths => {
+
+            if (options.onlyFilePath) {
+               callback(null, filepaths);
+            } else {
+               // single pdf => return it
+               if (filepaths.length === 1) {
+                  const fileContent = fs.readFileSync(filepaths[0]);
+                  fs.unlinkSync(filepaths[0]);
+                  callback(null, new Buffer(fileContent, 'binary').toJSON());
+
+               // several pdfs => merge them and return them
+               } else {
+                  const jointPDF = url2pdf.join(filepaths, null, 'onlyFile');
+                  callback(null, new Buffer(jointPDF, 'binary').toJSON());
                }
-            })
-            .catch(function (err) {
-               callback('Error generating pdf, error: ' + err);
-            });
+            }
+
+         }).catch(callback);
       }
+
+
    };
 };

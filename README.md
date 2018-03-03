@@ -47,6 +47,7 @@ var options = {
    saveDir: '/exportTemp'  // optional alternativ path to create pdfs
    loadTimeout: 3000,      // timeout in [ms] to wait till site should be loaded
    onlyFilePath: false,    // only return path to pdf files, do not read them in
+   buffer: false,          // false: return file content; true: return a buffer from binary file content
    debug: true             // optional show phantom debug messages
 };
 service.getPdf(urls, callback, options)

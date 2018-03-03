@@ -4,7 +4,9 @@
 const url2pdf = require('url2pdf-plus');
 const fs = require('fs');
 
-let mainOptions = {};
+let mainOptions = {
+   buffer: true
+};
 
 module.exports.start = function (options) {
 
@@ -16,9 +18,10 @@ module.exports.start = function (options) {
 
          // options
          let opts = mainOptions;
-         if (options.loadTimeout) opts.loadTimeout = options.loadTimeout || 2000;
-         if (options.saveDir) opts.saveDir = options.saveDir;
-         if (options.debug) opts.debug = options.debug;
+         if (options.loadTimeout !== 'undefined') opts.loadTimeout = options.loadTimeout || 2000;
+         if (options.saveDir !== 'undefined') opts.saveDir = options.saveDir;
+         if (options.debug !== 'undefined') opts.debug = options.debug;
+         if (options.buffer !== 'undefined') opts.buffer = options.buffer;
 
          if (urls instanceof String) { // allow passing a single url as string
             urls = [urls];
@@ -38,14 +41,16 @@ module.exports.start = function (options) {
             } else {
                // single pdf => return it
                if (filepaths.length === 1) {
-                  const fileContent = fs.readFileSync(filepaths[0]);
+                  let fileContent = fs.readFileSync(filepaths[0]);
                   fs.unlinkSync(filepaths[0]);
-                  callback(null, new Buffer(fileContent, 'binary').toJSON());
+                  if (opts.buffer) fileContent = new Buffer(fileContent, 'binary').toJSON();
+                  callback(null, fileContent);
 
                // several pdfs => merge them and return them
                } else {
-                  const jointPDF = url2pdf.join(filepaths, null, 'onlyFile');
-                  callback(null, new Buffer(jointPDF, 'binary').toJSON());
+                  let fileContent = url2pdf.join(filepaths, null, 'onlyFile');
+                  if (opts.buffer) fileContent = new Buffer(fileContent, 'binary').toJSON();
+                  callback(null, new Buffer(fileContent, 'binary').toJSON());
                }
             }
 

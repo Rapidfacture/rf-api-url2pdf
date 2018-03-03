@@ -4,24 +4,31 @@
 const url2pdf = require('url2pdf-plus');
 const fs = require('fs');
 
-let mainOptions = {
-   buffer: true
-};
+let mainOptions = {};
 
 module.exports.start = function (options) {
 
+   options = options || {};
    mainOptions = options || {};
+   if (options.buffer !== undefined) {
+      mainOptions.buffer = options.buffer;
+   } else {
+      mainOptions.buffer = true;
+   }
+
 
    return {
 
       getPdf: function (urls, callback, options) {
 
          // options
+         options = options || {};
          let opts = mainOptions;
-         if (options.loadTimeout !== 'undefined') opts.loadTimeout = options.loadTimeout || 2000;
-         if (options.saveDir !== 'undefined') opts.saveDir = options.saveDir;
-         if (options.debug !== 'undefined') opts.debug = options.debug;
-         if (options.buffer !== 'undefined') opts.buffer = options.buffer;
+         if (options.loadTimeout !== undefined) opts.loadTimeout = options.loadTimeout || 2000;
+         if (options.saveDir !== undefined) opts.saveDir = options.saveDir;
+         if (options.debug !== undefined) opts.debug = options.debug;
+         if (options.buffer !== undefined) opts.buffer = options.buffer;
+
 
          if (urls instanceof String) { // allow passing a single url as string
             urls = [urls];

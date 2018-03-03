@@ -4,17 +4,19 @@
 const url2pdf = require('url2pdf-plus');
 const fs = require('fs');
 
+let mainOptions = {};
 
-module.exports.start = function (options, next) {
+module.exports.start = function (options) {
+
+   mainOptions = options || {};
+
    return {
 
       getPdf: function (urls, callback, options) {
 
          // options
-         options = options || {};
-         let opts = {
-            loadTimeout: options.loadTimeout || 2000
-         };
+         let opts = mainOptions;
+         if (options.loadTimeout) opts.loadTimeout = options.loadTimeout || 2000;
          if (options.saveDir) opts.saveDir = options.saveDir;
          if (options.debug) opts.debug = options.debug;
 

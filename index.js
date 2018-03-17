@@ -24,7 +24,7 @@ module.exports.start = function (options) {
          // options
          options = options || {};
          let opts = mainOptions;
-         if (options.loadTimeout !== undefined) opts.loadTimeout = options.loadTimeout || 2000;
+         opts.loadTimeout = options.loadTimeout || 2000;
          if (options.saveDir !== undefined) opts.saveDir = options.saveDir;
          if (options.debug !== undefined) opts.debug = options.debug;
          if (options.buffer !== undefined) opts.buffer = options.buffer;

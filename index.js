@@ -30,7 +30,7 @@ module.exports.start = function (options) {
          if (options.buffer !== undefined) opts.buffer = options.buffer;
 
 
-         if (urls instanceof String) { // allow passing a single url as string
+         if (typeof urls === 'string') { // allow passing a single url as string
             urls = [urls];
          }
 

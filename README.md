@@ -1,3 +1,5 @@
+# Deprecated! Please use url2pdf3 which uses up to date technology and is mantained!
+
 # rf-api-url2pdf
 
 Create a pdf from a website via given url, return the pdf file content as buffer.
